@@ -1,0 +1,2 @@
+defmodule NhlGraphApi do
+end
