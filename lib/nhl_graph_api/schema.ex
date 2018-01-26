@@ -4,12 +4,12 @@ defmodule NhlGraphApi.Schema do
 
   import Absinthe.Resolution.Helpers
 
-  alias NhlGraphApi.NhlApi
+  alias NhlGraphApi.Loaders.Nhl
 
   def context(ctx) do
     loader =
       Dataloader.new()
-      |> Dataloader.add_source(NhlApi, NhlApi.data())
+      |> Dataloader.add_source(Nhl, Nhl.data())
 
     Map.put(ctx, :loader, loader)
   end
@@ -19,11 +19,11 @@ defmodule NhlGraphApi.Schema do
   end
 
   query do
-    field(:teams, list_of(:team), resolve: load(NhlApi))
+    field(:teams, list_of(:team), resolve: load(Nhl))
 
     field :team, :team do
       arg(:id, non_null(:id))
-      resolve(load(NhlApi))
+      resolve(load(Nhl))
     end
   end
 
