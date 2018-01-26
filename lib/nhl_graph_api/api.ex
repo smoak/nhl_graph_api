@@ -11,19 +11,11 @@ defmodule NhlGraphApi.Api do
   plug(:match)
   plug(:dispatch)
 
-  plug(Absinthe.Plug, schema: NhlGraphApi.Schema)
-
   forward(
     "/graphiql",
     to: Absinthe.Plug.GraphiQL,
     init_opts: [schema: NhlGraphApi.Schema, interface: :simple]
   )
 
-  match _ do
-    conn |> not_found
-  end
-
-  defp not_found(conn) do
-    conn |> send_resp(404, "not found")
-  end
+  forward("/", to: Absinthe.Plug, init_opts: [schema: NhlGraphApi.Schema])
 end

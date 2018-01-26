@@ -25,6 +25,7 @@ defmodule NhlGraphApi.MixProject do
       {:absinthe, "~> 1.4"},
       {:absinthe_plug, "~> 1.4"},
       {:cowboy, "~> 1.0"},
+      {:dataloader, "~> 1.0"},
       {:poison, "~> 1.3"},
       {:plug, "~> 1.0"}
     ]
