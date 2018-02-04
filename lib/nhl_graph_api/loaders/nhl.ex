@@ -12,19 +12,21 @@ defmodule NhlGraphApi.Loaders.Nhl do
     Dataloader.KV.new(&fetch/2)
   end
 
-  def fetch(batch_key, arg_maps) do
-    IO.inspect(arg_maps: arg_maps, batch_key: batch_key)
-
-    arg_maps
-    |> Enum.map(&load/1)
-    |> Enum.reduce(%{}, fn map, acc -> Map.merge(acc, map) end)
+  def fetch({:teams, _}, _) do
+    %{ %{} => @teams |> Map.values() }
   end
 
-  defp load(%{id: id}) do
-    %{%{id: id} => @teams |> Map.get(id)}
+  def fetch({:team, %{id: id}}, _) do
+    # must return a map keyed by args which is always %{}
+    %{ %{} => fetch_team_by_id(id) }
   end
 
-  defp load(%{}) do
-    %{%{} => @teams |> Map.values()}
+  def fetch(batch, ids) do
+    IO.inspect(batch: batch, ids: ids)
+    %{}
+  end
+
+  def fetch_team_by_id(id) do
+    @teams |> Map.get(id)
   end
 end
