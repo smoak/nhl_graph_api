@@ -19,11 +19,22 @@ defmodule NhlGraphApi.Schema do
   end
 
   query do
-    field(:teams, list_of(:team), resolve: dataloader(Nhl))
+    field(:teams, list_of(:team), resolve: load(Nhl))
 
     field :team, :team do
       arg(:id, non_null(:id))
-      resolve(dataloader(Nhl))
+      resolve(load(Nhl))
+    end
+  end
+
+  def load(source) do
+    fn _, args, %{context: %{loader: loader}} = res ->
+      resource = res.definition.schema_node.identifier
+      loader
+      |> Dataloader.load(source, resource, args)
+      |> on_load(fn loader ->
+        {:ok, Dataloader.get(loader, source, resource, args)}
+      end)
     end
   end
 end
