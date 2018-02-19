@@ -1,14 +1,13 @@
 defmodule NhlGraphApi.Loaders.Nhl do
   alias NhlGraphApi.Models.Team
+  alias NhlGraphApi.Models.Schedule
 
   def data() do
     Dataloader.KV.new(&fetch/2)
   end
 
   def fetch(:schedule, _) do
-    schedule = %{
-      games: [],
-    }
+    schedule = Schedule.get()
     %{ %{} => schedule }
   end
 
