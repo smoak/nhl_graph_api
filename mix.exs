@@ -28,6 +28,7 @@ defmodule NhlGraphApi.MixProject do
       {:dataloader, "~> 1.0"},
       {:distillery, "~> 1.5", runtime: false},
       {:httpotion, "~> 3.0"},
+      {:mock, "~> 0.3", only: :test},
       {:poison, "~> 1.3"},
       {:plug, "~> 1.0"}
     ]

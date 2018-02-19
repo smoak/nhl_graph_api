@@ -2,7 +2,7 @@ defmodule NhlGraphApi.Models.Team do
   defstruct [:id, :city, :name, :abbreviation]
 
   alias NhlGraphApi.Models.Team
-  alias NhlGraphApi.Clients.NhlStatsApi
+  alias NhlGraphApi.Clients.NhlStats
 
   def new(%{id: id, city: city, name: name, abbreviation: abbreviation}) do
     {:ok, %__MODULE__{}}
@@ -12,12 +12,12 @@ defmodule NhlGraphApi.Models.Team do
     |> with_abbreviation(abbreviation)
   end
 
-  def all(team_source \\ NhlStatsApi) do
+  def all(team_source \\ NhlStats) do
     team_source.teams()
     |> Enum.map(&from_json/1)
   end
 
-  def find_by_id(id, team_source \\ NhlStatsApi) do
+  def find_by_id(id, team_source \\ NhlStats) do
     team_source.team(id)
     |> from_json()
   end

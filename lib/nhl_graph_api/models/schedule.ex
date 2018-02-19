@@ -1,7 +1,7 @@
 defmodule NhlGraphApi.Models.Schedule do
   defstruct [:games]
 
-  alias NhlGraphApi.Clients.NhlStatsApi
+  alias NhlGraphApi.Clients.NhlStats
   alias NhlGraphApi.Models.Game
   alias NhlGraphApi.Models.Schedule
 
@@ -10,7 +10,7 @@ defmodule NhlGraphApi.Models.Schedule do
     |> with_games(games)
   end
 
-  def get(schedule_source \\ NhlStatsApi) do
+  def get(schedule_source \\ NhlStats) do
     schedule_source.schedule()
     |> schedule_from_json()
   end
