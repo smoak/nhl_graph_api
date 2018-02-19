@@ -18,4 +18,8 @@ defmodule NhlGraphApi.Clients.NhlStatsApi do
   def team(id) do
     get("/teams/#{id}").body["teams"] |> List.first()
   end
+
+  def schedule() do
+    get("/schedule?expand=schedule.teams").body
+  end
 end
