@@ -18,4 +18,20 @@ defmodule NhlGraphApi.Schema.ContentTypes do
   object :schedule do
     field(:games, non_null(list_of(:game)))
   end
+
+  object :conference do
+    field(:id, non_null(:id))
+    field(:name, non_null(:string))
+    field(:abbreviation, non_null(:string))
+    field(:short_name, non_null(:string))
+    field(:active, non_null(:boolean))
+  end
+
+  object :division do
+    field(:id, non_null(:id))
+    field(:name, non_null(:string))
+    field(:abbreviation, non_null(:string))
+    field(:conference, non_null(:conference))
+    field(:active, non_null(:boolean))
+  end
 end

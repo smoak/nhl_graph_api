@@ -29,6 +29,12 @@ defmodule NhlGraphApi.Schema do
     field :schedule, :schedule do
       resolve(load(Nhl))
     end
+
+    field(:divisions, list_of(:division), resolve: load(Nhl))
+    field(:division, :division) do
+      arg(:id, non_null(:id))
+      resolve(load(Nhl))
+    end
   end
 
   def load(source) do

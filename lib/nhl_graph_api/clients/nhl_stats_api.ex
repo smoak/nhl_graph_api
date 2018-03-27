@@ -19,7 +19,27 @@ defmodule NhlGraphApi.Clients.NhlStatsApi do
     get("/teams/#{id}").body["teams"] |> List.first()
   end
 
+  def roster(team_id) do
+    get("/teams/#{team_id}/roster?expand=roster.peson,person.names").body
+  end
+
   def schedule() do
     get("/schedule?expand=schedule.teams").body
+  end
+
+  def divisions() do
+    get("/divisions").body["divisions"]
+  end
+
+  def divisions(id) do
+    get("/divisions/#{id}").body["divisions"]
+  end
+
+  def conferences() do
+    get("/conferences").body["conferences"]
+  end
+
+  def conferences(id) do
+    get("/conferences/#{id}").body["conferences"]
   end
 end

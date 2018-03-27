@@ -1,6 +1,7 @@
 defmodule NhlGraphApi.Loaders.Nhl do
   alias NhlGraphApi.Models.Team
   alias NhlGraphApi.Models.Schedule
+  alias NhlGraphApi.Models.Division
 
   def data() do
     Dataloader.KV.new(&fetch/2)
@@ -22,6 +23,10 @@ defmodule NhlGraphApi.Loaders.Nhl do
 
   def fetch(:teams, _) do
     %{%{} => Team.all()}
+  end
+
+  def fetch(:divisions, _) do
+    %{%{} => Division.all()}
   end
 
   def fetch(batch, args) do
