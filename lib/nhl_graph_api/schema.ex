@@ -31,6 +31,7 @@ defmodule NhlGraphApi.Schema do
     end
 
     field(:divisions, list_of(:division), resolve: load(Nhl))
+
     field(:division, :division) do
       arg(:id, non_null(:id))
       resolve(load(Nhl))
@@ -40,6 +41,7 @@ defmodule NhlGraphApi.Schema do
   def load(source) do
     fn _, args, %{context: %{loader: loader}} = res ->
       resource = res.definition.schema_node.identifier
+
       loader
       |> Dataloader.load(source, resource, args)
       |> on_load(fn loader ->

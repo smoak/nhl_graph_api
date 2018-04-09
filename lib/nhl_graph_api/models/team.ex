@@ -23,7 +23,14 @@ defmodule NhlGraphApi.Models.Team do
   end
 
   def from_json(json) do
-    {:ok, team} = Team.new(%{id: json["id"], city: json["locationName"], name: json["name"], abbreviation: json["abbreviation"]}) 
+    {:ok, team} =
+      Team.new(%{
+        id: json["id"],
+        city: json["locationName"],
+        name: json["name"],
+        abbreviation: json["abbreviation"]
+      })
+
     team
   end
 

@@ -20,13 +20,13 @@ defmodule NhlGraphApi.Models.Schedule do
   end
 
   defp schedule_from_json(json) do
-    
-    games = json["dates"]
-    |> Enum.map(fn d -> d["games"] end)
-    |> List.flatten
-    |> Enum.map(&Game.from_json/1)
-    
+    games =
+      json["dates"]
+      |> Enum.map(fn d -> d["games"] end)
+      |> List.flatten()
+      |> Enum.map(&Game.from_json/1)
+
     {:ok, schedule} = Schedule.new(%{games: games})
     schedule
   end
-end 
+end

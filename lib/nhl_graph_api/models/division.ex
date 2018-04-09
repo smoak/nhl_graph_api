@@ -4,7 +4,13 @@ defmodule NhlGraphApi.Models.Division do
   alias NhlGraphApi.Models.Division
   alias NhlGraphApi.Clients.NhlStatsApi
 
-  def new(%{id: id, name: name, abbreviation: abbreviation, active: active, conference_id: conference_id}) do
+  def new(%{
+        id: id,
+        name: name,
+        abbreviation: abbreviation,
+        active: active,
+        conference_id: conference_id
+      }) do
     {:ok, %__MODULE__{}}
     |> with_id(id)
     |> with_name(name)
@@ -34,13 +40,15 @@ defmodule NhlGraphApi.Models.Division do
   end
 
   def from_json(json) do
-    {:ok, division} = Division.new(%{
-      id: json["id"],
-      name: json["name"],
-      abbreviation: json["abbreviation"],
-      active: json["active"],
-      conference_id: json["conference"]["id"]
-    })
+    {:ok, division} =
+      Division.new(%{
+        id: json["id"],
+        name: json["name"],
+        abbreviation: json["abbreviation"],
+        active: json["active"],
+        conference_id: json["conference"]["id"]
+      })
+
     division
   end
 

@@ -17,7 +17,15 @@ defmodule NhlGraphApi.Models.Game do
     home_team = json["teams"]["home"]["team"] |> Team.from_json()
     id = json["gamePk"]
     start_time_utc = json["gameDate"]
-    {:ok, game} = Game.new(%{id: id, start_time_utc: start_time_utc, away_team: away_team, home_team: home_team})
+
+    {:ok, game} =
+      Game.new(%{
+        id: id,
+        start_time_utc: start_time_utc,
+        away_team: away_team,
+        home_team: home_team
+      })
+
     game
   end
 

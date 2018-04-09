@@ -9,16 +9,16 @@ defmodule NhlGraphApi.Loaders.Nhl do
 
   def fetch(:schedule, _) do
     schedule = Schedule.get()
-    %{ %{} => schedule }
+    %{%{} => schedule}
   end
 
   def fetch(:team, %{id: id}) do
-    %{ %{id: id} => Team.find_by_id(id) }
+    %{%{id: id} => Team.find_by_id(id)}
   end
 
   def fetch(:team, args) do
     args
-    |> Enum.reduce(%{}, fn (arg, result) -> result |> Map.merge(fetch(:team, arg)) end)
+    |> Enum.reduce(%{}, fn arg, result -> result |> Map.merge(fetch(:team, arg)) end)
   end
 
   def fetch(:teams, _) do
