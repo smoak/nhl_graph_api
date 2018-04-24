@@ -1,6 +1,10 @@
 defmodule NhlGraphApi.Schema.ContentTypes do
   use Absinthe.Schema.Notation
 
+  import Absinthe.Resolution.Helpers, only: [dataloader: 1]
+
+  alias NhlGraphApi.Loaders.Nhl
+
   object :team do
     field(:id, non_null(:id))
     field(:name, non_null(:string))
@@ -31,7 +35,7 @@ defmodule NhlGraphApi.Schema.ContentTypes do
     field(:id, non_null(:id))
     field(:name, non_null(:string))
     field(:abbreviation, non_null(:string))
-    field(:conference, non_null(:conference))
+    field(:conference, non_null(:conference), resolve: dataloader(Nhl))
     field(:active, non_null(:boolean))
   end
 end

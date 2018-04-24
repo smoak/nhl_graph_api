@@ -31,15 +31,15 @@ defmodule NhlGraphApi.Clients.NhlStatsApi do
     get("/divisions").body["divisions"]
   end
 
-  def divisions(id) do
-    get("/divisions/#{id}").body["divisions"]
+  def division(id) do
+    get("/divisions/#{id}").body["divisions"] |> List.first()
   end
 
   def conferences() do
     get("/conferences").body["conferences"]
   end
 
-  def conferences(id) do
-    get("/conferences/#{id}").body["conferences"]
+  def conference(id) do
+    get("/conferences/#{id}").body["conferences"] |> List.first()
   end
 end
