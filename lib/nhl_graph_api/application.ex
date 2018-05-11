@@ -10,7 +10,7 @@ defmodule NhlGraphApi.Application do
     children = [
       # Starts a worker by calling: NhlGraphApi.Worker.start_link(arg)
       # {NhlGraphApi.Worker, arg},
-      Plug.Adapters.Cowboy.child_spec(:http, NhlGraphApi.Api, [], port: 8080)
+      Plug.Adapters.Cowboy.child_spec(:http, NhlGraphApi.Web.Api, [], port: 8080)
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -1,4 +1,4 @@
-defmodule NhlGraphApi.Api do
+defmodule NhlGraphApi.Web.Api do
   use Plug.Router
 
   plug(
@@ -14,8 +14,8 @@ defmodule NhlGraphApi.Api do
   forward(
     "/graphiql",
     to: Absinthe.Plug.GraphiQL,
-    init_opts: [schema: NhlGraphApi.Schema, interface: :simple]
+    init_opts: [schema: NhlGraphApi.GraphQL.Schema, interface: :simple]
   )
 
-  forward("/", to: Absinthe.Plug, init_opts: [schema: NhlGraphApi.Schema])
+  forward("/", to: Absinthe.Plug, init_opts: [schema: NhlGraphApi.GraphQL.Schema])
 end

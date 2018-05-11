@@ -1,15 +1,25 @@
-defmodule NhlGraphApi.Schema do
+defmodule NhlGraphApi.GraphQL.Schema do
+  @moduledoc """
+  The main GraphQL schema.
+  """
   use Absinthe.Schema
-  import_types(NhlGraphApi.Schema.ContentTypes)
+  
+  import_types(NhlGraphApi.GraphQL.Types.Conference)
+  import_types(NhlGraphApi.GraphQL.Types.Division)
+  import_types(NhlGraphApi.GraphQL.Types.Game)
+  import_types(NhlGraphApi.GraphQL.Types.Schedule)
+  import_types(NhlGraphApi.GraphQL.Types.Team)
 
   import Absinthe.Resolution.Helpers
 
-  alias NhlGraphApi.Loaders.Nhl
+  alias NhlGraphApi.GraphQL.Resolvers.Division
+  alias NhlGraphApi.GraphQL.Resolvers.Schedule
+  alias NhlGraphApi.GraphQL.Resolvers.Team
 
   def context(ctx) do
     loader =
       Dataloader.new()
-      |> Dataloader.add_source(Nhl, Nhl.data())
+      |> Dataloader.add_source(:nhl_api, NhlGraphApi.Loaders.Nhl.data())
 
     Map.put(ctx, :loader, loader)
   end
@@ -19,18 +29,18 @@ defmodule NhlGraphApi.Schema do
   end
 
   query do
-    field(:teams, list_of(:team), resolve: load(Nhl))
+    field(:teams, list_of(:team), resolve: &Team.list/3)
 
     field :team, :team do
       arg(:id, non_null(:id))
-      resolve(load(Nhl))
+      resolve(load(:nhl_api))
     end
 
     field :schedule, :schedule do
-      resolve(load(Nhl))
+      resolve(&Schedule.list/3)
     end
 
-    field(:divisions, list_of(:division), resolve: load(Nhl))
+    field(:divisions, list_of(:division), resolve: &Division.list/3)
 
     field(:division, :division) do
       arg(:id, non_null(:id))

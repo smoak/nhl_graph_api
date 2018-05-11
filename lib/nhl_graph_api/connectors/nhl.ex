@@ -4,6 +4,7 @@ defmodule NhlGraphApi.Connectors.Nhl do
   alias NhlGraphApi.Serialization.Schedule
   alias NhlGraphApi.Serialization.Division
 
+  @spec get_all_teams() :: list(NhlGraphApi.Models.Team.t())
   def get_all_teams() do
     NhlStatsApi.teams()
     |> Enum.map(fn t ->
