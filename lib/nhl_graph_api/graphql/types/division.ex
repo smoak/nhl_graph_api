@@ -4,11 +4,10 @@ defmodule NhlGraphApi.GraphQL.Types.Division do
   @desc "The groupings of members of a given conference"
   object :division do
     field(:id, non_null(:id))
-    
+
     @desc "The name of the division"
     field(:name, non_null(:string))
 
-    
     field(:abbreviation, non_null(:string))
 
     @desc "The conference this division belongs to"
