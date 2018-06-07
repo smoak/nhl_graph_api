@@ -14,8 +14,19 @@ defmodule NhlGraphApi.Web.Api do
   forward(
     "/graphiql",
     to: Absinthe.Plug.GraphiQL,
-    init_opts: [schema: NhlGraphApi.GraphQL.Schema, interface: :simple]
+    init_opts: [
+      schema: NhlGraphApi.GraphQL.Schema,
+      interface: :simple,
+      pipeline: {ApolloTracing.Pipeline, :plug}
+    ]
   )
 
-  forward("/", to: Absinthe.Plug, init_opts: [schema: NhlGraphApi.GraphQL.Schema])
+  forward(
+    "/",
+    to: Absinthe.Plug,
+    init_opts: [
+      schema: NhlGraphApi.GraphQL.Schema,
+      pipeline: {ApolloTracing.Pipeline, :plug}
+    ]
+  )
 end
