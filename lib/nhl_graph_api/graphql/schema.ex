@@ -3,7 +3,8 @@ defmodule NhlGraphApi.GraphQL.Schema do
   The main GraphQL schema.
   """
   use Absinthe.Schema
-  
+  use ApolloTracing
+
   import_types(NhlGraphApi.GraphQL.Types.Conference)
   import_types(NhlGraphApi.GraphQL.Types.Division)
   import_types(NhlGraphApi.GraphQL.Types.Game)
@@ -44,7 +45,7 @@ defmodule NhlGraphApi.GraphQL.Schema do
 
     field(:division, :division) do
       arg(:id, non_null(:id))
-      resolve(load(Nhl))
+      resolve(load(:nhl_api))
     end
   end
 
