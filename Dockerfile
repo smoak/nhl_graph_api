@@ -1,5 +1,4 @@
 FROM elixir:alpine
-MAINTAINER "Scott Moak <scott.moak@mybrainoncode.com>"
 
 ARG APP_NAME=nhl_graph_api
 
