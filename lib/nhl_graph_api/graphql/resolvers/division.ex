@@ -1,5 +1,11 @@
 defmodule NhlGraphApi.GraphQL.Resolvers.Division do
+  alias NhlGraphApi.Repos.Division
+
   def list(_, _, _) do
-    {:ok, NhlGraphApi.Connectors.Nhl.get_all_divisions()}
+    {:ok, Division.find_all()}
+  end
+
+  def by_id(_parent, %{id: id}, _resolution) do
+    {:ok, Division.find_by_id(id)}
   end
 end

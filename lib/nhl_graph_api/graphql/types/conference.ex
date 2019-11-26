@@ -1,10 +1,9 @@
 defmodule NhlGraphApi.GraphQL.Types.Conference do
   use Absinthe.Schema.Notation
+  use Absinthe.Relay.Schema.Notation, :modern
 
   @desc "Used to divide teams"
-  object :conference do
-    field(:id, non_null(:id))
-
+  node object(:conference) do
     @desc "The name of the conference"
     field(:name, non_null(:string))
 

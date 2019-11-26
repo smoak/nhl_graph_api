@@ -14,17 +14,6 @@ defmodule NhlGraphApi.Loaders.Nhl do
     |> Enum.reduce(%{}, fn arg, result -> result |> Map.merge(fetch(:team, arg)) end)
   end
 
-  def fetch(:division, %{id: id}) do
-    %{%{id: id} => Nhl.get_division_by_id(id)}
-  end
-
-  def fetch(:division, args) do
-    args
-    |> Enum.reduce(%{}, fn arg, result ->
-      result |> Map.merge(fetch(:division, arg))
-    end)
-  end
-
   def fetch(batch, args) do
     IO.inspect(batch: batch, args: args)
     %{}

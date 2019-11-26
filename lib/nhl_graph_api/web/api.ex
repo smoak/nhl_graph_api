@@ -17,7 +17,7 @@ defmodule NhlGraphApi.Web.Api do
     init_opts: [
       schema: NhlGraphApi.GraphQL.Schema,
       interface: :simple,
-      pipeline: {ApolloTracing.Pipeline, :plug}
+      json_codec: Poison
     ]
   )
 
@@ -26,7 +26,7 @@ defmodule NhlGraphApi.Web.Api do
     to: Absinthe.Plug,
     init_opts: [
       schema: NhlGraphApi.GraphQL.Schema,
-      pipeline: {ApolloTracing.Pipeline, :plug}
+      json_codec: Poison
     ]
   )
 end

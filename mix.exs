@@ -22,16 +22,16 @@ defmodule NhlGraphApi.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:absinthe, "~> 1.4"},
       {:absinthe_plug, "~> 1.4"},
-      {:apollo_tracing, "~> 0.4"},
-      {:cowboy, "~> 1.0"},
+      {:absinthe_relay, "~> 1.4"},
+      {:absinthe, "~> 1.4"},
       {:dataloader, "~> 1.0"},
       {:dialyze, "~> 0.2", only: :dev},
       {:distillery, "~> 1.5", runtime: false},
       {:httpotion, "~> 3.0"},
-      {:poison, "~> 1.3"},
-      {:plug, "~> 1.0"}
+      {:plug_cowboy, "~> 1.0"},
+      {:plug, "~> 1.0"},
+      {:poison, "~> 1.3"}
     ]
   end
 end
