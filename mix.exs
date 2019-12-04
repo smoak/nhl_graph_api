@@ -6,8 +6,15 @@ defmodule NhlGraphApi.MixProject do
       app: :nhl_graph_api,
       version: "0.1.0",
       elixir: "~> 1.6",
+      elixirc_paths: elixirc_paths(Mix.env()),
+      compilers: [:phoenix] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      name: "NhlGraphApi",
+      source_url: "https://github.com/smoak/nhl_graph_api",
+      docs: [
+        extras: ["README.md"]
+      ]
     ]
   end
 
@@ -19,9 +26,14 @@ defmodule NhlGraphApi.MixProject do
     ]
   end
 
+  # Specifies which paths to compile per environment.
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
+
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:absinthe_phoenix, "~> 1.4"},
       {:absinthe_plug, "~> 1.4"},
       {:absinthe_relay, "~> 1.4"},
       {:absinthe, "~> 1.4"},
@@ -29,9 +41,9 @@ defmodule NhlGraphApi.MixProject do
       {:dialyze, "~> 0.2", only: :dev},
       {:distillery, "~> 1.5", runtime: false},
       {:httpotion, "~> 3.0"},
-      {:plug_cowboy, "~> 1.0"},
+      {:plug_cowboy, "~> 2.0"},
       {:plug, "~> 1.0"},
-      {:poison, "~> 1.3"}
+      {:poison, "~> 2.1"}
     ]
   end
 end

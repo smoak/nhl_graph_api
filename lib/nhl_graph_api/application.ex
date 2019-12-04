@@ -8,14 +8,22 @@ defmodule NhlGraphApi.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
+      # Start the endpoint when the application starts
+      NhlGraphApiWeb.Endpoint
       # Starts a worker by calling: NhlGraphApi.Worker.start_link(arg)
       # {NhlGraphApi.Worker, arg},
-      Plug.Adapters.Cowboy.child_spec(:http, NhlGraphApi.Web.Api, [], port: 8080)
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: NhlGraphApi.Supervisor]
     Supervisor.start_link(children, opts)
+  end
+
+  # Tell Phoenix to update the endpoint configuration
+  # whenever the application is updated.
+  def config_change(changed, _new, removed) do
+    NhlGraphApiWeb.Endpoint.config_change(changed, removed)
+    :ok
   end
 end
