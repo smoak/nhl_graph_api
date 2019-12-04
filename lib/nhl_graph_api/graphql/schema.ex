@@ -7,14 +7,11 @@ defmodule NhlGraphApi.GraphQL.Schema do
 
   import_types(NhlGraphApi.GraphQL.Types.Conference)
   import_types(NhlGraphApi.GraphQL.Types.Division)
-  # import_types(NhlGraphApi.GraphQL.Types.Game)
-  # import_types(NhlGraphApi.GraphQL.Types.Schedule)
-  # import_types(NhlGraphApi.GraphQL.Types.Team)
+  import_types(NhlGraphApi.GraphQL.Types.Team)
 
   alias NhlGraphApi.GraphQL.Resolvers.Division
   alias NhlGraphApi.GraphQL.Resolvers.Conference
-  # alias NhlGraphApi.GraphQL.Resolvers.Schedule
-  # alias NhlGraphApi.GraphQL.Resolvers.Team
+  alias NhlGraphApi.GraphQL.Resolvers.Team
 
   node interface do
     resolve_type(fn
@@ -23,16 +20,14 @@ defmodule NhlGraphApi.GraphQL.Schema do
   end
 
   query do
-    # field(:teams, list_of(:team), resolve: &Team.list/3)
+    field(:teams, list_of(:team), resolve: &Team.list/3)
 
-    # field :team, :team do
-    #   arg(:id, non_null(:id))
-    #   resolve(load(:nhl_api))
-    # end
+    field(:team, :team) do
+      arg(:id, non_null(:id))
 
-    # field :schedule, :schedule do
-    #   resolve(&Schedule.list/3)
-    # end
+      middleware(Absinthe.Relay.Node.ParseIDs, id: :team)
+      resolve(&Team.by_id/3)
+    end
 
     field(:divisions, list_of(:division), resolve: &Division.list/3)
 
