@@ -8,6 +8,7 @@ defmodule NhlGraphApi.GraphQL.Schema do
   import_types(NhlGraphApi.GraphQL.Types.Conference)
   import_types(NhlGraphApi.GraphQL.Types.Division)
   import_types(NhlGraphApi.GraphQL.Types.Team)
+  import_types(NhlGraphApi.GraphQL.Types.GameEvent)
 
   alias NhlGraphApi.GraphQL.Resolvers.Division
   alias NhlGraphApi.GraphQL.Resolvers.Conference
@@ -45,6 +46,16 @@ defmodule NhlGraphApi.GraphQL.Schema do
 
       middleware(Absinthe.Relay.Node.ParseIDs, id: :conference)
       resolve(&Conference.by_id/3)
+    end
+
+    subscription do
+      field :game_events, non_null(list_of(:game_event)) do
+        arg(:game_id, non_null(:id))
+
+        config(fn args, _ ->
+          {:ok, topic: args.game_id}
+        end)
+      end
     end
   end
 end

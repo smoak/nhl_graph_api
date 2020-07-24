@@ -1,7 +1,8 @@
 defmodule NhlGraphApiWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :nhl_graph_api
+  use Absinthe.Phoenix.Endpoint
 
-  socket "/socket", NhlGraphApiWeb.UserSocket,
+  socket "/socket", NhlGraphApiWeb.GraphQLSocket,
     websocket: true,
     longpoll: false
 

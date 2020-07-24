@@ -11,6 +11,7 @@ defmodule NhlGraphApiWeb.Router do
     forward "/graphiql",
             Absinthe.Plug.GraphiQL,
             schema: NhlGraphApi.GraphQL.Schema,
+            socket: NhlGraphApiWeb.GraphQLSocket,
             default_url: "/graphql",
             json_codec: Phoenix.json_library()
 

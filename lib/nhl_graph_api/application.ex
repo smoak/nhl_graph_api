@@ -9,7 +9,8 @@ defmodule NhlGraphApi.Application do
     # List all child processes to be supervised
     children = [
       # Start the endpoint when the application starts
-      NhlGraphApiWeb.Endpoint
+      NhlGraphApiWeb.Endpoint,
+      {Absinthe.Subscription, [NhlGraphApiWeb.Endpoint]}
       # Starts a worker by calling: NhlGraphApi.Worker.start_link(arg)
       # {NhlGraphApi.Worker, arg},
     ]
