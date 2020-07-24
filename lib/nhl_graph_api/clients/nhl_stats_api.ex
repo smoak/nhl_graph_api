@@ -1,45 +1,48 @@
 defmodule NhlGraphApi.Clients.NhlStatsApi do
-  use HTTPotion.Base
+  use Tesla, only: ~w(get)a
 
-  def process_url(url) do
-    "http://statsapi.web.nhl.com/api/v1/" <> url
-  end
-
-  def process_response_body(body) do
-    body
-    |> IO.iodata_to_binary()
-    |> Poison.decode!()
-  end
+  plug Tesla.Middleware.BaseUrl, "https://statsapi.web.nhl.com/api/v1"
+  plug Tesla.Middleware.JSON, engine: Poison, engine_opts: [keys: :atoms]
+  plug Tesla.Middleware.Logger
 
   def teams() do
-    get("/teams").body["teams"]
+    {:ok, response} = get("/teams")
+    response.body |> IO.inspect
+    response.body[:teams]
   end
 
   def team(id) do
-    get("/teams/#{id}").body["teams"] |> List.first()
+    {:ok, response} = get("/teams/#{id}")
+    response.body[:teams] |> List.first()
   end
 
   def roster(team_id) do
-    get("/teams/#{team_id}/roster?expand=roster.peson,person.names").body
+    {:ok, response} = get("/teams/#{team_id}/roster?expand=roster.peson,person.names")
+    response.body
   end
 
   def schedule() do
-    get("/schedule?expand=schedule.teams").body
+    {:ok, response} = get("/schedule?expand=schedule.teams")
+    response.body
   end
 
   def divisions() do
-    get("/divisions").body["divisions"]
+    {:ok, response} = get("/divisions")
+    response.body[:divisions]
   end
 
   def division(id) do
-    get("/divisions/#{id}").body["divisions"] |> List.first()
+    {:ok, response} = get("/divisions/#{id}")
+    response.body[:divisions] |> List.first()
   end
 
   def conferences() do
-    get("/conferences").body["conferences"]
+    {:ok, response} = get("/conferences")
+    response.body[:conferences]
   end
 
   def conference(id) do
-    get("/conferences/#{id}").body["conferences"] |> List.first()
+    {:oke, response} = get("/conferences/#{id}")
+    response.body[:conferences] |> List.first()
   end
 end

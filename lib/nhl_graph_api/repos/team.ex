@@ -11,10 +11,10 @@ defmodule NhlGraphApi.Repos.Team do
 
   defp map_team(fetched_team) do
     %{
-      id: fetched_team |> Map.get("id"),
-      name: fetched_team |> Map.get("name"),
-      abbreviation: fetched_team |> Map.get("abbreviation"),
-      city: fetched_team |> Map.get("venue") |> Map.get("city")
+      id: fetched_team |> Map.get(:id),
+      name: fetched_team |> Map.get(:name),
+      abbreviation: fetched_team |> Map.get(:abbreviation),
+      city: fetched_team |> Map.get(:venue) |> Map.get(:city)
     }
   end
 end

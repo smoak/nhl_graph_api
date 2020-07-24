@@ -11,17 +11,17 @@ defmodule NhlGraphApi.Repos.Division do
 
   defp map_division(fetched_division) do
     %{
-      id: fetched_division |> Map.get("id"),
-      name: fetched_division |> Map.get("name"),
-      abbreviation: fetched_division |> Map.get("abbreviation"),
+      id: fetched_division |> Map.get(:id),
+      name: fetched_division |> Map.get(:name),
+      abbreviation: fetched_division |> Map.get(:abbreviation),
       conference: fetched_division |> map_conference,
-      active: fetched_division |> Map.get("active")
+      active: fetched_division |> Map.get(:active)
     }
   end
 
   defp map_conference(fetched_division) do
     %{
-      id: fetched_division |> Map.get("conference") |> Map.get("id")
+      id: fetched_division |> Map.get(:conference) |> Map.get(:id)
     }
   end
 end

@@ -6,9 +6,9 @@ A graphql implementation of the (undocumented) nhl api
 
 Uses graphql to provide a simple api
 
-* elixir 1.6+
-* absinthe 1.4
-* phoenix 1.4
+* elixir 1.9+
+* absinthe 1.5
+* phoenix 1.5
 
 ## Running
 

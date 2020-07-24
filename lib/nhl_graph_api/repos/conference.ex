@@ -11,11 +11,11 @@ defmodule NhlGraphApi.Repos.Conference do
 
   defp map_conference(fetched_conference) do
     %{
-      id: fetched_conference |> Map.get("id"),
-      name: fetched_conference |> Map.get("name"),
-      abbreviation: fetched_conference |> Map.get("abbreviation"),
-      short_name: fetched_conference |> Map.get("shortName"),
-      active: fetched_conference |> Map.get("active")
+      id: fetched_conference |> Map.get(:id),
+      name: fetched_conference |> Map.get(:name),
+      abbreviation: fetched_conference |> Map.get(:abbreviation),
+      short_name: fetched_conference |> Map.get(:shortName),
+      active: fetched_conference |> Map.get(:active)
     }
   end
 end

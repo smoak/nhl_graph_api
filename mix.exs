@@ -4,8 +4,8 @@ defmodule NhlGraphApi.MixProject do
   def project do
     [
       app: :nhl_graph_api,
-      version: "0.1.0",
-      elixir: "~> 1.6",
+      version: "1.0.0",
+      elixir: "~> 1.9",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
@@ -33,17 +33,18 @@ defmodule NhlGraphApi.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:absinthe_phoenix, "~> 1.4"},
-      {:absinthe_plug, "~> 1.4"},
-      {:absinthe_relay, "~> 1.4"},
-      {:absinthe, "~> 1.4"},
+      {:absinthe_phoenix, "~> 2.0"},
+      {:absinthe_plug, "~> 1.5"},
+      {:absinthe_relay, "~> 1.5"},
+      {:absinthe, "~> 1.5"},
       {:dataloader, "~> 1.0"},
       {:dialyze, "~> 0.2", only: :dev},
-      {:distillery, "~> 1.5", runtime: false},
-      {:httpotion, "~> 3.0"},
-      {:plug_cowboy, "~> 2.0"},
-      {:plug, "~> 1.0"},
-      {:poison, "~> 2.1"}
+      {:hackney, "~> 1.16"},
+      {:phoenix, "~> 1.5"},
+      {:plug_cowboy, "~> 2.3"},
+      {:plug, "~> 1.10"},
+      {:poison, "~> 4.0"},
+      {:tesla, "~> 1.3"}
     ]
   end
 end

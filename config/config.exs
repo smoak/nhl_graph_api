@@ -11,8 +11,7 @@ use Mix.Config
 config :nhl_graph_api, NhlGraphApiWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "2oVNSqlK5mxbcEAjb1sI0HG0fNHjCJ8K8KKvnSxN0eYLqRu1PFxrjVn3VYzXv2W2",
-  render_errors: [view: NhlGraphApiWeb.ErrorView, accepts: ~w(json)],
-  pubsub: [name: NhlGraphApi.PubSub, adapter: Phoenix.PubSub.PG2]
+  render_errors: [view: NhlGraphApiWeb.ErrorView, accepts: ~w(json)]
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -20,6 +19,8 @@ config :logger, :console,
   metadata: [:request_id]
 
 config :phoenix, :json_library, Poison
+
+config :tesla, adapter: Tesla.Adapter.Hackney
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
