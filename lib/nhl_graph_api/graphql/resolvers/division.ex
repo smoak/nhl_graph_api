@@ -1,4 +1,7 @@
 defmodule NhlGraphApi.GraphQL.Resolvers.Division do
+  @moduledoc """
+  The resolvers for the Division type
+  """
   alias NhlGraphApi.Repos.Division
 
   def list(_, _, _) do

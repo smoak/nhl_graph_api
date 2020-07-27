@@ -1,7 +1,11 @@
 defmodule NhlGraphApi.Repos.Team do
+  @moduledoc """
+  Repo for fetching a team and cleaning up the
+  representation for use with graphql
+  """
   alias NhlGraphApi.Fetchers.Team
 
-  def find_all() do
+  def find_all do
     Team.get_all() |> Enum.map(&map_team/1)
   end
 

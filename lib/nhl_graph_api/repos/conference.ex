@@ -1,7 +1,11 @@
 defmodule NhlGraphApi.Repos.Conference do
+  @moduledoc """
+  Repo for fetching a conference and cleaning up the
+  representation for use with graphql
+  """
   alias NhlGraphApi.Fetchers.Conference
 
-  def find_all() do
+  def find_all do
     Conference.get_all() |> Enum.map(&map_conference/1)
   end
 

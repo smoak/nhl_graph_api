@@ -1,4 +1,7 @@
 defmodule NhlGraphApi.GraphQL.Types.Game do
+  @moduledoc """
+  The Game GraphQL type
+  """
   use Absinthe.Schema.Notation
 
   @desc "An NHL game"

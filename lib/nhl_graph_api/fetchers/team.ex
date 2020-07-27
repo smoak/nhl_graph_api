@@ -1,7 +1,10 @@
 defmodule NhlGraphApi.Fetchers.Team do
+  @moduledoc """
+  Fetches team data from the NhlStatsApi
+  """
   alias NhlGraphApi.Clients.NhlStatsApi
 
-  def get_all() do
+  def get_all do
     NhlStatsApi.teams()
   end
 

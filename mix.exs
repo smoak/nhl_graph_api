@@ -1,4 +1,5 @@
 defmodule NhlGraphApi.MixProject do
+  @moduledoc false
   use Mix.Project
 
   def project do
@@ -37,6 +38,7 @@ defmodule NhlGraphApi.MixProject do
       {:absinthe_plug, "~> 1.5"},
       {:absinthe_relay, "~> 1.5"},
       {:absinthe, "~> 1.5"},
+      {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
       {:dataloader, "~> 1.0"},
       {:dialyze, "~> 0.2", only: :dev},
       {:hackney, "~> 1.16"},

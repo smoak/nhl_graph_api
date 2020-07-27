@@ -1,4 +1,7 @@
 defmodule NhlGraphApi.GraphQL.Types.Division do
+  @moduledoc """
+  The Division GraphQL type
+  """
   use Absinthe.Schema.Notation
   use Absinthe.Relay.Schema.Notation, :modern
 

@@ -1,4 +1,7 @@
 defmodule NhlGraphApi.GraphQL.Types.Team do
+  @moduledoc """
+  The Team GraphQL type
+  """
   use Absinthe.Schema.Notation
   use Absinthe.Relay.Schema.Notation, :modern
 

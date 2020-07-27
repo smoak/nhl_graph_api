@@ -1,7 +1,11 @@
 defmodule NhlGraphApi.Repos.Division do
+  @moduledoc """
+  Repo for fetching a division and cleaning up the
+  representation for use with graphql
+  """
   alias NhlGraphApi.Fetchers.Division
 
-  def find_all() do
+  def find_all do
     Division.get_all() |> Enum.map(&map_division/1)
   end
 

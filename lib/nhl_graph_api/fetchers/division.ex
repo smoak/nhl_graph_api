@@ -1,7 +1,10 @@
 defmodule NhlGraphApi.Fetchers.Division do
+  @moduledoc """
+  Fetches division data from the NhlStatsApi
+  """
   alias NhlGraphApi.Clients.NhlStatsApi
 
-  def get_all() do
+  def get_all do
     NhlStatsApi.divisions()
   end
 

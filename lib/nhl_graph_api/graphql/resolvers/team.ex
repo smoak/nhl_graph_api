@@ -1,4 +1,7 @@
 defmodule NhlGraphApi.GraphQL.Resolvers.Team do
+  @moduledoc """
+  The resolvers for the Team type
+  """
   alias NhlGraphApi.Repos.Team
 
   @spec list(any(), map(), Absinthe.Blueprint.t()) :: {:ok, list(Team.t())}

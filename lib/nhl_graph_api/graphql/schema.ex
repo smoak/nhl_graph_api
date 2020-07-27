@@ -9,8 +9,8 @@ defmodule NhlGraphApi.GraphQL.Schema do
   import_types(NhlGraphApi.GraphQL.Types.Division)
   import_types(NhlGraphApi.GraphQL.Types.Team)
 
-  alias NhlGraphApi.GraphQL.Resolvers.Division
   alias NhlGraphApi.GraphQL.Resolvers.Conference
+  alias NhlGraphApi.GraphQL.Resolvers.Division
   alias NhlGraphApi.GraphQL.Resolvers.Team
 
   node interface do

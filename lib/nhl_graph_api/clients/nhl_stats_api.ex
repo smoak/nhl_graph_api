@@ -1,13 +1,16 @@
 defmodule NhlGraphApi.Clients.NhlStatsApi do
+  @moduledoc """
+  HTTP client for the NHL Stats Api
+  """
+  @moduledoc since: "1.0.0"
   use Tesla, only: ~w(get)a
 
   plug Tesla.Middleware.BaseUrl, "https://statsapi.web.nhl.com/api/v1"
   plug Tesla.Middleware.JSON, engine: Poison, engine_opts: [keys: :atoms]
   plug Tesla.Middleware.Logger
 
-  def teams() do
+  def teams do
     {:ok, response} = get("/teams")
-    response.body |> IO.inspect
     response.body[:teams]
   end
 
@@ -21,12 +24,12 @@ defmodule NhlGraphApi.Clients.NhlStatsApi do
     response.body
   end
 
-  def schedule() do
+  def schedule do
     {:ok, response} = get("/schedule?expand=schedule.teams")
     response.body
   end
 
-  def divisions() do
+  def divisions do
     {:ok, response} = get("/divisions")
     response.body[:divisions]
   end
@@ -36,7 +39,7 @@ defmodule NhlGraphApi.Clients.NhlStatsApi do
     response.body[:divisions] |> List.first()
   end
 
-  def conferences() do
+  def conferences do
     {:ok, response} = get("/conferences")
     response.body[:conferences]
   end

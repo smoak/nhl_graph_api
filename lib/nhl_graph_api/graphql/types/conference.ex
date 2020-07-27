@@ -1,4 +1,7 @@
 defmodule NhlGraphApi.GraphQL.Types.Conference do
+  @moduledoc """
+  The Conference GraphQL type
+  """
   use Absinthe.Schema.Notation
   use Absinthe.Relay.Schema.Notation, :modern
 

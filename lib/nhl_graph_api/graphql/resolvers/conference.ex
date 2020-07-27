@@ -1,4 +1,7 @@
 defmodule NhlGraphApi.GraphQL.Resolvers.Conference do
+  @moduledoc """
+  The resolvers for the Conference type
+  """
   alias NhlGraphApi.Repos.Conference
 
   def list(_, _, _) do
